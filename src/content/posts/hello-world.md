@@ -1,5 +1,7 @@
 ---
 title: "Hello World"
-date: 2025-08-26
 ---
+
+Published on <CurrentDateTime />
+
 ## This is my first post.
