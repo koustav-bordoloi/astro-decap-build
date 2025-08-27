@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: koustav-bordoloi/astro-decap-build # repo where content lives
   branch: main
+  base_url: https://codeqube-astro.netlify.app # your site domain
+  auth_endpoint: oauth # points to /oauth route
 
 media_folder: "public/images" # Media files will be stored in the repo under public/images
 public_folder: "/images" # The src attribute for uploaded media will begin with /images
