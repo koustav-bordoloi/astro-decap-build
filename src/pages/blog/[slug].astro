@@ -15,6 +15,8 @@ export async function getStaticPaths() {
 }
 
 const { post }: { post: Blog } = Astro.props;
+// Render the Markdown body
+const { Content } = await post.render();
 ---
 
 <html lang="en">
@@ -30,7 +32,7 @@ const { post }: { post: Blog } = Astro.props;
             )
         }
         <div>
-            <astro:content></astro:content>
+            <Content />
         </div>
     </body>
 </html>
