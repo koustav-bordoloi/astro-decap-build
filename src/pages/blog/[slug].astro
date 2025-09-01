@@ -1,1 +1,36 @@
-adasasdas
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export const prerender = true;
+
+type Blog = CollectionEntry<"blog">;
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+
+    return posts.map((post: Blog) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post }: { post: Blog } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <title>{post.data.title}</title>
+    </head>
+    <body>
+        <h1>{post.data.title}</h1>
+        <p><strong>Date:</strong> {post.data.date.toDateString()}</p>
+        {
+            post.data.thumbnail && (
+                <img src={post.data.thumbnail} alt={post.data.title} />
+            )
+        }
+        <div>
+            <astro:content></astro:content>
+        </div>
+    </body>
+</html>
