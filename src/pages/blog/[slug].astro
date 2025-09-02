@@ -1,38 +1,32 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layout/Layout.astro";
+import { generateStaticPaths } from "../../utils/getStaticPathsHelper";
 
 export const prerender = true;
 
-type Blog = CollectionEntry<"blog">;
+type BlogEntry = CollectionEntry<"blog">;
 
 export async function getStaticPaths() {
-    const posts = await getCollection("blog");
-
-    return posts.map((post: Blog) => ({
-        params: { slug: post.slug },
-        props: { post },
-    }));
+    return generateStaticPaths("blog");
 }
 
-const { post }: { post: Blog } = Astro.props;
+const { entry }: { entry: BlogEntry } = Astro.props;
 // Render the Markdown body
-const { Content } = await post.render();
+const { Content } = await entry.render();
 ---
 
-<html lang="en">
-    <head>
-        <title>{post.data.title}</title>
-    </head>
-    <body>
-        <h1>{post.data.title}</h1>
-        <p><strong>Date:</strong> {post.data.date.toDateString()}</p>
+<Layout title={entry.data.title}>
+    <article>
+        <h1>{entry.data.title}</h1>
+        <p>
+            <em>{new Date(entry.data.date).toLocaleDateString()}</em>
+        </p>
         {
-            post.data.thumbnail && (
-                <img src={post.data.thumbnail} alt={post.data.title} />
+            entry.data.thumbnail && (
+                <img src={entry.data.thumbnail} alt={entry.data.title} />
             )
         }
-        <div>
-            <Content />
-        </div>
-    </body>
-</html>
+        <Content />
+    </article>
+</Layout>

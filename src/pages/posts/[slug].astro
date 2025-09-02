@@ -1,35 +1,25 @@
 ---
-export const prerender = true;
+import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layout/Layout.astro";
+import { generateStaticPaths } from "../../utils/getStaticPathsHelper";
+
+export const prerender = true;
+type PostEntry = CollectionEntry<"posts">;
 
 export async function getStaticPaths() {
-    const modules = import.meta.glob("/src/content/posts/*.md", {
-        eager: true,
-    });
-
-    const posts = Object.entries(modules).map(([path, mod]: any) => {
-        const fileName = path.split("/").pop();
-        const slug = fileName?.replace(/\.md$/, "");
-        return {
-            params: { slug },
-            props: {
-                frontmatter: mod.frontmatter,
-                Content: mod.default,
-            },
-        };
-    });
-
-    return posts;
+    return generateStaticPaths("posts");
 }
 
-const { frontmatter, Content } = Astro.props;
+const { entry }: { entry: PostEntry } = Astro.props;
+// Render the Markdown body
+const { Content } = await entry.render();
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={entry.data.title}>
     <article>
-        <h1>{frontmatter.title}</h1>
+        <h1>{entry.data.title}</h1>
         <p>
-            <em>{new Date(frontmatter.date).toLocaleDateString()}</em>
+            <em>{new Date(entry.data.date).toLocaleDateString()}</em>
         </p>
         <Content />
     </article>
