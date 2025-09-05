@@ -37,7 +37,7 @@ collections:
     label: "Navigation Links"
     files:
       - file: "src/content/nav-links/links.json"
-        label: "Navigation Links"
+        label: "Nav Links"
         name: "links"
         fields:
           - label: "Links"
