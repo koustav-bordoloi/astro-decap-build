@@ -32,3 +32,17 @@ collections:
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "nav-links"
+    label: "Navigation Links"
+    files:
+      - file: "src/content/nav-links/links.json"
+        label: "Navigation Links"
+        name: "links"
+        fields:
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
