@@ -1,0 +1,12 @@
+{
+  "links": [
+    {
+      "title": "Home",
+      "url": "/home"
+    },
+    {
+      "title": "About us",
+      "url": "/about-us"
+    }
+  ]
+}
