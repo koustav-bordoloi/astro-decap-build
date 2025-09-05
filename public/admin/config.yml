@@ -38,10 +38,10 @@ collections:
     files:
       - file: "src/content/nav-links/links.json"
         label: "Nav Links"
-        name: "links"
+        name: "links1"
         fields:
           - label: "Links"
-            name: "links"
+            name: "links2"
             widget: "list"
             fields:
               - { label: "Title", name: "title", widget: "string" }
