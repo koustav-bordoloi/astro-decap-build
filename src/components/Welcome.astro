@@ -1,18 +1,5 @@
 ---
-import linksData from "../content/nav-links/links.json";
-const links = linksData.links;
+import Header from "./Header.astro";
 ---
 
-<div id="container" class="space-y-4">
-	<nav>
-		<ul class="flex gap-4">
-			{
-				links.map((link) => (
-					<li>
-						<a href={link.url}>{link.title}</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
-</div>
+<Header/>

@@ -1,0 +1,61 @@
+---
+import linksData from "../content/nav-links/links.json";
+const links = linksData.links;
+---
+
+<header class="bg-gray-900 text-white shadow-md">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+        <!-- Logo -->
+        <a
+            href="/"
+            class="text-2xl font-bold tracking-wide hover:text-indigo-400 transition"
+        >
+            RippleSoft
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex gap-6">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.url}
+                        class="text-gray-300 hover:text-white hover:underline transition"
+                    >
+                        {link.title}
+                    </a>
+                ))
+            }
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+            id="menu-toggle"
+            class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+        >
+            ☰
+        </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav id="mobile-menu" class="hidden flex-col bg-gray-800 md:hidden">
+        {
+            links.map((link) => (
+                <a
+                    href={link.url}
+                    class="px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition"
+                >
+                    {link.title}
+                </a>
+            ))
+        }
+    </nav>
+
+    <script>
+        const toggleBtn = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        toggleBtn?.addEventListener("click", () => {
+            mobileMenu?.classList.toggle("hidden");
+        });
+    </script>
+</header>
