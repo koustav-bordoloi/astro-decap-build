@@ -3,59 +3,51 @@ import linksData from "../content/nav-links/links.json";
 const links = linksData.links;
 ---
 
-<header class="bg-gray-900 text-white shadow-md">
-    <div class="container mx-auto flex items-center justify-between px-6 py-4">
-        <!-- Logo -->
-        <a
-            href="/"
-            class="text-2xl font-bold tracking-wide hover:text-indigo-400 transition"
-        >
-            MySite
-        </a>
+<footer class="bg-gray-900 text-gray-400 border-t border-gray-800">
+    <div class="container mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
+        <!-- Brand -->
+        <div>
+            <h2 class="text-xl font-bold text-white mb-3">MySite</h2>
+            <p class="text-sm">
+                Building modern web experiences with performance and design in
+                mind.
+            </p>
+        </div>
 
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex gap-6">
-            {
-                links.map((link) => (
-                    <a
-                        href={link.url}
-                        class="text-gray-300 hover:text-white hover:underline transition"
-                    >
-                        {link.title}
-                    </a>
-                ))
-            }
-        </nav>
+        <!-- Quick Links -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Quick Links</h3>
+            <ul class="space-y-2">
+                {
+                    links.map((link) => (
+                        <li>
+                            <a
+                                href={link.url}
+                                class="hover:text-white transition"
+                            >
+                                {link.title}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
 
-        <!-- Mobile Menu Button -->
-        <button
-            id="menu-toggle"
-            class="md:hidden text-gray-300 hover:text-white focus:outline-none"
-        >
-            ☰
-        </button>
+        <!-- Contact / Social -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Connect</h3>
+            <p class="text-sm">contact@mysite.com</p>
+
+            <div class="flex gap-4 mt-3">
+                <a href="#" class="hover:text-white">Twitter</a>
+                <a href="#" class="hover:text-white">GitHub</a>
+                <a href="#" class="hover:text-white">LinkedIn</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Mobile Nav -->
-    <nav id="mobile-menu" class="hidden flex-col bg-gray-800 md:hidden">
-        {
-            links.map((link) => (
-                <a
-                    href={link.url}
-                    class="px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition"
-                >
-                    {link.title}
-                </a>
-            ))
-        }
-    </nav>
-
-    <script>
-        const toggleBtn = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        toggleBtn?.addEventListener("click", () => {
-            mobileMenu?.classList.toggle("hidden");
-        });
-    </script>
-</header>
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-800 text-center py-4 text-sm">
+        © {new Date().getFullYear()} MySite. All rights reserved.
+    </div>
+</footer>
