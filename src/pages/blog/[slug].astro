@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import Layout from "../../layout/Layout.astro";
 import { generateStaticPaths } from "../../utils/getStaticPathsHelper";
 
@@ -12,21 +12,49 @@ export async function getStaticPaths() {
 }
 
 const { entry }: { entry: BlogEntry } = Astro.props;
-// Render the Markdown body
 const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-    <article>
-        <h1>{entry.data.title}</h1>
-        <p>
-            <em>{new Date(entry.data.date).toLocaleDateString()}</em>
-        </p>
-        <!-- {
-            entry.data.thumbnail && (
-                <img src={entry.data.thumbnail} alt={entry.data.title} />
-            )
-        } -->
-        <Content />
-    </article>
+    <section class="py-10">
+        <a
+            href="/blog"
+            class="inline-flex items-center text-sm font-medium text-amber-300 transition hover:text-amber-200"
+        >
+            &larr; Back to blog
+        </a>
+
+        <article class="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-gray-900/70 shadow-xl shadow-black/20">
+            <header class="border-b border-white/10 bg-gradient-to-r from-amber-500/20 via-orange-500/10 to-transparent px-6 py-8 md:px-10">
+                <p class="text-xs uppercase tracking-[0.2em] text-amber-300">Blog Post</p>
+                <h1 class="mt-3 text-3xl font-black leading-tight text-white md:text-4xl">{entry.data.title}</h1>
+                <p class="mt-4 text-sm text-gray-300">
+                    {new Date(entry.data.date).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })}
+                </p>
+            </header>
+
+            {
+                entry.data.thumbnail && (
+                    <div class="border-b border-white/10 bg-black/20 p-4 md:p-6">
+                        <img
+                            src={entry.data.thumbnail}
+                            alt={entry.data.title}
+                            class="mx-auto h-auto w-full max-w-md rounded-xl border border-white/10 object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                )
+            }
+
+            <div class="px-6 py-8 md:px-10 md:py-10">
+                <div class="max-w-none space-y-4 text-gray-200 [&_a]:text-amber-300 [&_a]:underline [&_a:hover]:text-amber-200 [&_blockquote]:border-l-4 [&_blockquote]:border-amber-300/40 [&_blockquote]:pl-4 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:leading-8 [&_ul]:list-disc [&_ul]:pl-6">
+                    <Content />
+                </div>
+            </div>
+        </article>
+    </section>
 </Layout>
