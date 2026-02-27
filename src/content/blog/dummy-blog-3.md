@@ -2,7 +2,7 @@
 layout: blog
 title: Dummy Blog 3
 date: 2026-02-27T14:44:00.000+05:30
-thumbnail: /images/photo.jpg
+thumbnail: /images/signature.jpg
 rating: 2
 ---
 
