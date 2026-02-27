@@ -26,11 +26,11 @@ const posts: Post[] = Object.entries(modules)
 ---
 
 <Layout title="Posts">
-    <h1 class="text-red-400 font-bold text-2xl">Posts</h1>
+    <h1 class="text-white font-bold text-2xl mt-3">Posts</h1>
     <ul>
         {
             posts.map((p) => (
-                <li class="list-disc list-inside space-y-2 text-gray-700">
+                <li class="list-disc list-inside space-y-2 text-gray-400">
                     <a href={`/posts/${p.slug}`}>
                         {p.title} - {new Date(p.date).toLocaleDateString()}
                     </a>
