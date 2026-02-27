@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: Dummy Blog 3
 date: 2026-02-27T14:44:00.000+05:30
 thumbnail: https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg
